@@ -60,7 +60,7 @@ bool GLExample::init() {
   cube->setShapePosition(glm::vec3(-2.0, 0.0, 0.0));
 
   // TODO: Change the offset along the normals here (currently 0.0)
-  torus = std::make_shared<Torus>(0.0);
+  torus = std::make_shared<Torus>(-2.5);
   constructed = torus->createVertexArray(0, 1, 2);
   torus->setShapePosition(glm::vec3(1.0, 0.0, 0.0));
   return constructed;
@@ -85,7 +85,13 @@ bool GLExample::render() {
    *where you can find this information e.g. OpenGL reference, official OpenGL
    *specification or a OpenGL cheatsheet
    */
+  // glEnable(GL_CULL_FACE);
+  // glCullFace(GL_FRONT);
+  // glCullFace(GL_BACK);
+  // glFrontFace(GL_CCW);
+  // glFrontFace(GL_CW);
   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+  // glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
   //...
 
