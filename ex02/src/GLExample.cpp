@@ -32,9 +32,9 @@ bool GLExample::init() {
     return false;
 
   // TODO: transform the torus
-  torus->setPosition({1.0f, 1.8f, 0.0f});
+  torus->setPosition({1.0f, -1.0f, 0.0f});
   // torus->setScaling({1.0f, 1.8f, 0.0f});
-  torus->setRotation(45.0f, {1.0, 1.0, 1.0});
+  torus->setRotation(0.25f, {1.0, -3.0, 1.0});
   // torus->calculateModelMatrix();
 
   // Init multiline field for normals of objects
@@ -47,10 +47,11 @@ bool GLExample::init() {
 
 bool GLExample::update() {
   // TODO: spin animation for the cube and the torus
-  cube->setRotation(.1f, {1.0, 1.0, 1.0});
-  torus->setRotation(.2f, {1.0f, 1.0f, 1.0});
+  cube->setRotation(0.01f, {1.0, 1.0, 1.0});
+  torus->setRotation(
+      0.01f, glm::normalize(glm::vec3(0.0, 0.0, 0.0) - cam.getPosition()));
   cube->calculateModelMatrix();
-  torus->calculateModelMatrix();
+  // torus->calculateModelMatrix();
 
   return true;
 }

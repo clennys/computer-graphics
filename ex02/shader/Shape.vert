@@ -16,9 +16,10 @@ void main()
 	// TODO: use the normal matrix
 
 
-	objectColor = vColor;
+	//objectColor = vColor;
 
 	// TODO: uncomment this line to display the normals as color
-//	objectColor = vNormal;
+	objectColor = (mat3(modelMatrix) * vNormal);
+	//objectColor = vNormal;
 }
 

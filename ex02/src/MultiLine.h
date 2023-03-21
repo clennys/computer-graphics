@@ -3,18 +3,15 @@
 
 #include "Shape.h"
 
-namespace cgCourse
-{
-	class MultiLine : public Shape
-	{
-	public:
-		MultiLine(	const std::vector<glm::vec3> & _vertices,
-					const std::vector<glm::vec3> & _normals
-					);
+namespace cgCourse {
+class MultiLine : public Shape {
+public:
+  MultiLine(const std::vector<glm::vec3> &_vertices,
+            const std::vector<glm::vec3> &_normals);
 
-		void draw() const override;
-	};
-}
+  void draw() const override;
+};
+
+} // namespace cgCourse
 
 #endif // MULTILINE_H
-

@@ -12,6 +12,7 @@ void main()
 {
 	// TODO: complete with the necessary code
 
+	gl_Position =  mvpMatrix * vec4(vPosition, 1);
 	fragColor = vColor;
 }
 
