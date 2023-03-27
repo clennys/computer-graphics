@@ -89,6 +89,7 @@ void Shape::calculateModelMatrix() {
       translationMatrix * rotationMatrix * scalingMatrix * getModelMatrix();
   translationMatrix = glm::mat4(1);
   scalingMatrix = glm::mat4(1);
+  // rotationMatrix = glm::mat4(1);
 };
 
 // end TODO

@@ -26,7 +26,9 @@ bool GLExample::init() {
   // transform the cube
   cube->setPosition(glm::vec3(-2.5, 0.5, 1.5));
   cube->setScaling(glm::vec3(1.5, 1.5, 1.5));
-  cube->setRotation(0.01f, glm::vec3(1.0f, 0.0f, 1.0f));
+  // cube->setRotation(
+  // 0.01f, glm::normalize(glm::vec3(0.0, 0.0, 0.0) - cam.getPosition()));
+  cube->setRotation(0.01f, glm::vec3(0.0f, 0.0f, 1.0f));
 
   torus = std::make_shared<Torus>();
   if (!torus->createVertexArray(0, 1, 2))
