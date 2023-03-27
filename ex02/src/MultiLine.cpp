@@ -16,7 +16,10 @@ MultiLine::MultiLine(const std::vector<glm::vec3> &_vertices,
     positions.push_back(_vertices[i] + _normals[i] * normal_length);
     colors.push_back({0.5f, 0.5f, 0.0});
 
-    faces.push_back({2 * i, 2 * i + 1, 2 * i});
+    normals.push_back(_normals[i]);
+    normals.push_back(_normals[i]);
+
+    // faces.push_back({2 * i, 2 * i + 1, 2 * i});
   }
 }
 
@@ -24,7 +27,9 @@ void MultiLine::draw() const {
   // TODO: complete code to draw the normals as lines
   glBindVertexArray(vaoID);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferID);
-  glDrawElements(GL_LINES, 3 * faces.size(), GL_UNSIGNED_INT, 0);
+  glDrawArrays(GL_LINES, 0, positions.size());
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+  // glDrawElements(GL_LINES, 3 * faces.size(), GL_UNSIGNED_INT, 0);
   glBindVertexArray(0);
 }
 } // namespace cgCourse

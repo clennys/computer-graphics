@@ -6,13 +6,14 @@ layout(location = 2) in vec3 vNormal;
 
 out vec3 fragColor;
 
+uniform mat4 normalMatrix;
 uniform mat4 mvpMatrix;
 
 void main()
 {
 	// TODO: complete with the necessary code
-
 	gl_Position =  mvpMatrix * vec4(vPosition, 1);
-	fragColor = vColor;
+	//fragColor = vNormal;
+	fragColor = (mat3(normalMatrix) * vNormal);
 }
 

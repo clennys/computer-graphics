@@ -26,6 +26,7 @@ bool GLExample::init() {
   // transform the cube
   cube->setPosition(glm::vec3(-2.5, 0.5, 1.5));
   cube->setScaling(glm::vec3(1.5, 1.5, 1.5));
+  cube->setRotation(0.01f, glm::vec3(1.0f, 0.0f, 1.0f));
 
   torus = std::make_shared<Torus>();
   if (!torus->createVertexArray(0, 1, 2))
@@ -34,8 +35,9 @@ bool GLExample::init() {
   // TODO: transform the torus
   torus->setPosition({1.0f, -1.0f, 0.0f});
   // torus->setScaling({1.0f, 1.8f, 0.0f});
-  torus->setRotation(0.25f, {1.0, -3.0, 1.0});
-  // torus->calculateModelMatrix();
+  // torus->setRotation(0.25f, {1.0, -3.0, 1.0});
+  torus->setRotation(
+      0.01f, glm::normalize(glm::vec3(0.0, 0.0, 0.0) - cam.getPosition()));
 
   // Init multiline field for normals of objects
   normalsTorus = std::make_shared<MultiLine>(torus->positions, torus->normals);
@@ -47,11 +49,8 @@ bool GLExample::init() {
 
 bool GLExample::update() {
   // TODO: spin animation for the cube and the torus
-  cube->setRotation(0.01f, {1.0, 1.0, 1.0});
-  torus->setRotation(
-      0.01f, glm::normalize(glm::vec3(0.0, 0.0, 0.0) - cam.getPosition()));
   cube->calculateModelMatrix();
-  // torus->calculateModelMatrix();
+  torus->calculateModelMatrix();
 
   return true;
 }
@@ -112,6 +111,9 @@ void GLExample::renderTorus() {
   mvpMatrix = cam.getViewProjectionMatrix() * torus->getModelMatrix();
   glUniformMatrix4fv(programForTorusNormals->getUniformLocation("mvpMatrix"), 1,
                      GL_FALSE, &mvpMatrix[0][0]);
+  glUniformMatrix4fv(programForTorusNormals->getUniformLocation("normalMatrix"),
+                     1, GL_FALSE, &normalMatrix[0][0]);
+
   normalsTorus->draw();
 
   programForTorusNormals->unbind();

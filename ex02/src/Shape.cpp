@@ -76,20 +76,20 @@ void Shape::draw() const {
 
 void Shape::setPosition(glm::vec3 _pos) {
   translationMatrix = glm::translate(modelMatrix, _pos);
-  modelMatrix *= translationMatrix;
 }
 
 void Shape::setRotation(float _angle, glm::vec3 _rot) {
   rotationMatrix = glm::rotate(_angle, _rot);
-  modelMatrix *= rotationMatrix;
 }
 
-void Shape::setScaling(glm::vec3 _scale) {
-  scalingMatrix = glm::scale(_scale);
-  modelMatrix *= scalingMatrix;
-}
+void Shape::setScaling(glm::vec3 _scale) { scalingMatrix = glm::scale(_scale); }
 
-void Shape::calculateModelMatrix() {}
+void Shape::calculateModelMatrix() {
+  modelMatrix =
+      translationMatrix * rotationMatrix * scalingMatrix * getModelMatrix();
+  translationMatrix = glm::mat4(1);
+  scalingMatrix = glm::mat4(1);
+};
 
 // end TODO
 
